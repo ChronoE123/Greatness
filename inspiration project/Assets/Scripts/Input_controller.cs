@@ -9,7 +9,7 @@ public class MoveInputEvent : UnityEvent<float,float> { }
 
 public class Input_controller : MonoBehaviour
 {
-
+    public static Input_controller current;
 
     Controls controls;
     public MoveInputEvent moveInputEvent;
@@ -17,6 +17,7 @@ public class Input_controller : MonoBehaviour
     public void Awake()
     {
         controls = new Controls();
+        current = this;
     }
 
     private void OnEnable()
@@ -31,6 +32,24 @@ public class Input_controller : MonoBehaviour
         Vector2 moveInput = context.ReadValue<Vector2>();
         moveInputEvent.Invoke(moveInput.x, moveInput.y);
         Debug.Log($"move input: { moveInput}");
+    }
+
+    public event Action onDoorwayTriggerEnter;
+    public void DoorwayTriggerEnter()
+    {
+        if(onDoorwayTriggerEnter != null)
+        {
+            onDoorwayTriggerEnter();
+        }
+    }
+
+    public event Action onDoorwayTriggerExit;
+    public void DoorwayTriggerExit()
+    {
+        if (onDoorwayTriggerExit != null)
+        {
+            onDoorwayTriggerExit();
+        }
     }
 
     // Start is called before the first frame update
