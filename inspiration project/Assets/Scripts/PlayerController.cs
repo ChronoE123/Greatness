@@ -9,11 +9,22 @@ public class PlayerController : MonoBehaviour
     float horizontal;
     float vertical;
 
+    private Rigidbody playerRigidbody;
+
+    private void Awake()
+    {
+        playerRigidbody = GetComponent<Rigidbody>();
+    }
+
+    public void Jump()
+    {
+        Debug.Log("jumped!");
+        playerRigidbody.AddForce(Vector3.up * 5f, ForceMode.Impulse);
+    }
+
     private void Update()
     {
         Vector3 moveDirection = Vector3.forward * vertical + Vector3.right * horizontal;
-
-        
 
         Vector3 projectedCameraForward = Vector3.ProjectOnPlane(Camera.main.transform.forward, Vector3.up);
         Quaternion rotationToCamera = Quaternion.LookRotation(projectedCameraForward, Vector3.up);
@@ -31,6 +42,8 @@ public class PlayerController : MonoBehaviour
         this.horizontal = horizontal;
         Debug.Log($"player controller: moveinput: {vertical}, { horizontal}");
     }
+
+    
 
 
 }

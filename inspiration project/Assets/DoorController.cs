@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
+
+    public bool characterInArea;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -12,13 +15,18 @@ public class DoorController : MonoBehaviour
         Input_controller.current.onDoorwayTriggerExit += onDoorWayClose;
     }
 
-    private void onDoorWayClose()
+    public void onDoorWayClose()
     {
-        gameObject.transform.position = new Vector3(-0.07f, 5.88f, 7.34f);
+       
+            gameObject.transform.position = new Vector3(-0.07f, 1.58f, 7.34f);
+       
+       
     }
 
-    private void onDoorWayOpen()
+    public void onDoorWayOpen()
     {
-        gameObject.transform.position = new Vector3(-0.07f, 1.58f, 7.34f);
+       
+            gameObject.transform.position = new Vector3(-0.07f, 5.88f, 7.34f);
+        
     }
 }

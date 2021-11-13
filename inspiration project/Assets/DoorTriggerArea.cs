@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class DoorTriggerArea : MonoBehaviour
 {
+
+   
+    private void Start()
+    {
+        
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        Input_controller.current.DoorwayTriggerEnter();
+        Input_controller.current.DoorwayTriggerEnter(); 
     }
 
     private void OnTriggerExit(Collider other)
